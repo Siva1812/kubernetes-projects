@@ -1,0 +1,19 @@
+apiVersion: apps/v1       # API group for Deployments
+kind: Deployment          # We are creating a Deployment
+metadata:
+  name: nginx-deployment  # Deployment name
+spec:
+  replicas: 2             # Number of pods we want
+  selector:               # Select pods with this label
+    matchLabels:
+      app: nginx
+  template:               # Template for the pods
+    metadata:
+      labels:
+        app: nginx
+    spec:                 # Pod specification
+      containers:
+      - name: nginx
+        image: nginx:latest   # Image to use
+        ports:
+        - containerPort: 80   # Expose container port
